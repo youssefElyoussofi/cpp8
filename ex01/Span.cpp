@@ -1,6 +1,8 @@
 #include "Span.hpp"
+#include <bits/stdc++.h>
+#include <algorithm>
 
-Span::Span():data(0)
+Span::Span():data(0),maxN(0)
 {
 
 }
@@ -31,5 +33,17 @@ Span &Span::operator=(const Span &span)
 
 void Span::addNumber(unsigned int nb)
 {
+    if (this->maxN == this->data.size())
+        throw std::out_of_range("the numbers stored hit the max possible");
+    this->data.push_back(nb);
+}
 
+unsigned int Span::longestSpan(void)
+{
+    if (this->maxN <= 1)
+        throw std::out_of_range("no enough numbers to found longest span");
+    
+    unsigned int max = *std::max_element(data.begin(),data.end());
+    unsigned int min = *std::min_element(data.begin(),data.end());
+    return (max - min);
 }
