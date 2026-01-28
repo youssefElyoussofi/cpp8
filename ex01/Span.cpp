@@ -28,6 +28,7 @@ Span &Span::operator=(const Span &span)
         return *this;
     this->maxN = span.maxN;
     this->data = span.data;
+    
     return *this;
 }
 
@@ -62,4 +63,10 @@ unsigned int Span::shortestSpan(void)
             shortest = current;
     }
     return shortest;
+}
+
+
+void Span::addNumber(std::vector<int>::iterator firstIt,std::vector<int>::iterator secondIt)
+{
+   
 }
