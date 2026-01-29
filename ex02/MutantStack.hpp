@@ -21,6 +21,21 @@ class MutantStack
         T* begin(void){
            return &st.top(); 
         }
+        T* end(void){
+            std::stack<T> tmp;
+            T* ptr;
+            while (st.size() != 1){
+                tmp.push(st.top());
+                st.pop();
+            }
+            ptr = &st.top();
+            while (!tmp.empty()){
+                st.push(tmp.top());
+                tmp.pop();
+            }
+            return ptr;
+        }
+        
 };
 
 #endif
