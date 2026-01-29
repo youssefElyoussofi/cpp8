@@ -18,6 +18,9 @@ class MutantStack
         ~MutantStack(){};
         void push(const T& t){st.push(t);}
         void pop(void){st.pop();}
+        T* begin(void){
+           return &st.top(); 
+        }
 };
 
 #endif
