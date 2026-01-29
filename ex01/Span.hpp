@@ -16,7 +16,7 @@ class Span
         void addNumber(int nb);
         unsigned int longestSpan(void);
         unsigned int shortestSpan(void);
-        void addNumber(std::vector<int>::iterator firstIt,std::vector<int>::iterator secondIt);
+        void addMultiNumbers(std::vector<int>::iterator firstIt,std::vector<int>::iterator secondIt);
 };
 
 #endif

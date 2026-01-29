@@ -24,18 +24,18 @@ Span::~Span()
 
 Span &Span::operator=(const Span &span)
 {
-    if (this == &span)
-        return *this;
-    this->maxN = span.maxN;
-    this->data = span.data;
-    
+    if (this != &span)
+    {
+        this->maxN = span.maxN;
+        this->data = span.data;    
+    }
     return *this;
 }
 
 void Span::addNumber(int nb)
 {
     if (this->maxN == this->data.size())
-        throw std::out_of_range("the numbers stored hit the max possible");
+        throw std::out_of_range("cannot add single number the range out of max possible");
     this->data.push_back(nb);
 }
 
@@ -53,10 +53,11 @@ unsigned int Span::shortestSpan(void)
 {
     if (data.size() <= 1)
         throw std::out_of_range("no enough numbers to found shortest span");
-    std::sort(data.begin(),data.end());
-    unsigned int shortest = *(data.begin() + 1) - *(data.begin());
+    std::vector<int> tmp = this->data;
+    std::sort(tmp.begin(),tmp.end());
+    unsigned int shortest = *(tmp.begin() + 1) - *(tmp.begin());
     unsigned int current = shortest;
-    for (std::vector<int>::iterator it = data.begin(); it + 1 != data.end(); it++)
+    for (std::vector<int>::iterator it = tmp.begin(); it + 1 != tmp.end(); it++)
     {
         current = *(it + 1) - *it;
         if (current < shortest)
@@ -66,7 +67,10 @@ unsigned int Span::shortestSpan(void)
 }
 
 
-void Span::addNumber(std::vector<int>::iterator firstIt,std::vector<int>::iterator secondIt)
+void Span::addMultiNumbers(std::vector<int>::iterator It1,std::vector<int>::iterator It2)
 {
-   
+   size_t dst = std::distance(It1,It2);
+   if (data.size() + dst > this->maxN)
+        throw std::out_of_range("cannot add multipe numbers the range out of max possible");
+    data.insert(data.begin(),It1,It2);
 }

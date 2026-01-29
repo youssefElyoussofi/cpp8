@@ -6,24 +6,37 @@
 
 int main()
 {
-    Span sp = Span(5);
-    sp.addNumber(6);
-    sp.addNumber(3);
-    sp.addNumber(17);
-    sp.addNumber(9);
-    sp.addNumber(11);
-    std::cout << sp.shortestSpan() << std::endl;
-    std::cout << sp.longestSpan() << std::endl;
+    Span sp1 = Span(5);
+    sp1.addNumber(6);
+    sp1.addNumber(3);
+    sp1.addNumber(17);
+    sp1.addNumber(9);
+    sp1.addNumber(11);
+    std::cout << sp1.shortestSpan() << std::endl;
+    std::cout << sp1.longestSpan() << std::endl;
 
-    Span spBig = Span(50000);
+    std::vector<int> test(5000);
+    for (size_t i = 0, len = test.size(); i < len; i++)
+    {
+        test.at(i) = i + 5;
+    }
 
+    Span sp2(5000);
     try
     {
-        spBig.multiNumbers(9000);
+        sp2.addMultiNumbers(test.begin(),test.end());
+        sp2.addMultiNumbers(test.begin(),test.end());
     }
     catch(const std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
-
+    try
+    {
+        std::cout << sp2.shortestSpan() << std::endl;
+        std::cout << sp2.longestSpan() << std::endl;
+    }
+    catch(const std::exception& e) {
+        std::cerr << e.what() << std::endl;
+    }
     return 0;
 }
