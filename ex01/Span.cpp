@@ -1,13 +1,13 @@
 #include "Span.hpp"
-#include <bits/stdc++.h>
+#include <stdexcept>
 #include <algorithm>
 
-Span::Span():data(0),maxN(0)
+Span::Span():maxN(0)
 {
 
 }
 
-Span::Span(unsigned int max):data(0),maxN(max)
+Span::Span(unsigned int max):maxN(max)
 {
 
 }
@@ -42,8 +42,9 @@ void Span::addNumber(int nb)
 unsigned int Span::longestSpan(void) 
 {
     if (this->data.size() <= 1)
+    {
         throw std::out_of_range("no enough numbers to found longest span");
-    
+    }
     int max = *std::max_element(data.begin(),data.end());
     int min = *std::min_element(data.begin(),data.end());
     return (max - min);
@@ -71,6 +72,8 @@ void Span::addMultiNumbers(std::vector<int>::iterator It1,std::vector<int>::iter
 {
    size_t dst = std::distance(It1,It2);
    if (data.size() + dst > this->maxN)
-        throw std::out_of_range("cannot add multipe numbers the range out of max possible");
-    data.insert(data.begin(),It1,It2);
+   {
+       throw std::out_of_range("cannot add multipe numbers the Span is full");
+   }
+    data.insert(data.end(),It1,It2);
 }

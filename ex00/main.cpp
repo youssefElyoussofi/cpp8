@@ -15,18 +15,52 @@ template <typename T> void print(const T& container)
 int main()
 {
     std::vector<int> v(5,1);
+    std::cout << "\n test 1\n";
     print(v);
-    easyfind(v,11);
+    try
+    {
+        easyfind(v,11);
+        std::cout << "success :) element exist in container\n"; 
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
     v.push_back(11);
     print<std::vector<int> >(v);
-    easyfind(v,11);
+    try
+    {
+        easyfind(v,11);
+        std::cout << "success :) element exist in container\n";
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
+    std::cout << "\n test 2\n";
     std::list<int> l(5,4);
     print(l);
-    easyfind(v,12);
+    try
+    {
+        easyfind(v,12);
+        std::cout << "success :) element exist in container\n";
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
     l.push_front(12);
     print(l);
-    easyfind(l,12);
+    try
+    {
+        easyfind(l,12);
+        std::cout << "success :) element exist in container\n";
 
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
     return 0;
 }

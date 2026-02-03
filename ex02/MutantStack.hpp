@@ -9,15 +9,15 @@ class MutantStack : public std::stack<T>
 {
     public:
         typedef typename std::stack<T>::container_type::iterator iterator;
-        MutantStack(){};
-        MutantStack(const MutantStack& mstack):std::stack<T>(mstack){};
+        MutantStack(){}
+        MutantStack(const MutantStack& mstack):std::stack<T>(mstack){}
         MutantStack& operator=(const MutantStack& mstack){
             if (this != &mstack){
                 std::stack<T>::operator=(mstack);
             }
             return *this;
         };
-        ~MutantStack(){};
+        ~MutantStack(){}
         iterator begin(){
             return this->c.begin();
         }
